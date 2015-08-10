@@ -83,6 +83,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		828EE3071B78D44600FC5706 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		828F7E201B6DCAB200EFCD84 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +111,7 @@
 		828F7E2B1B6DCAB200EFCD84 /* HappyDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				828EE3071B78D44600FC5706 /* View */,
 				829E3C971B6F9CB3004CA1CE /* Model */,
 				828F7E2E1B6DCAB200EFCD84 /* AppDelegate.swift */,
 				828F7E301B6DCAB200EFCD84 /* ViewController.swift */,

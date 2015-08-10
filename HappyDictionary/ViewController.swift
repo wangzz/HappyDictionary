@@ -11,23 +11,13 @@ import UIKit
 
 class ViewController: UIViewController {
     let dataManager = FGDataManager()
-    let textView = UITextView()
+    var translation :FGTranslation?
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchButton: UIButton!
+    @IBOutlet var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let label:UILabel? = UILabel(frame: CGRectMake(100, 100, 100, 20))
-        if let trueLabel = label {
-            trueLabel.text = "good"
-            trueLabel.backgroundColor = UIColor.redColor()
-            self.view .addSubview(trueLabel)
-            println("hello world! %@",trueLabel)
-        }
-        
-        textView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 300)
-        textView.backgroundColor = UIColor.lightGrayColor()
-        
-        dataManager.fetchTranslateResult("zh", to: "en", words: "中国")
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +25,41 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func reloadTableView(translation:FGTranslation) {
+        self.translation = translation
+        self.tableView.reloadData()
+    }
+    
+    func dismissKeyBard() {
+        self.textField.resignFirstResponder()
+    }
+    
+    @IBAction func onSearchButtonAction(sender: UIButton) {
+        self.dismissKeyBard()
+        
+//        dataManager.fetchTranslateResult("zh", to: "en", words: "中国")
+        dataManager.fetchTranslateResult("en", to: "zh", words: "data", disposeResult: reloadTableView)
+    }
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.dismissKeyBard()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let translationResult = self.translation {
+            return translationResult.symbols.first!.parts.count
+        } else {
+            return 0;
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
 
 }
 

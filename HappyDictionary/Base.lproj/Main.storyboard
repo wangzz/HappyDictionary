@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="HappyDictionary" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,8 +16,59 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSs-z4-oTG">
+                                <rect key="frame" x="488" y="28" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="dRx-5n-nYu"/>
+                                </constraints>
+                                <state key="normal" title="Search">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onSearchButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SA2-Aq-uYu"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="C3G-9h-nXj">
+                                <rect key="frame" x="16" y="66" width="568" height="534"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="y6t-Tv-dPP"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="NSt-df-RwJ"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入查询内容" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DD-Oa-CQd">
+                                <rect key="frame" x="36" y="28" width="444" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="8DD-Oa-CQd" secondAttribute="trailing" constant="390" id="0lr-hE-DSA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eSs-z4-oTG" secondAttribute="trailing" constant="16" id="BdA-pO-Xdm"/>
+                            <constraint firstItem="eSs-z4-oTG" firstAttribute="top" secondItem="8DD-Oa-CQd" secondAttribute="top" id="DoB-aD-bfN"/>
+                            <constraint firstItem="eSs-z4-oTG" firstAttribute="leading" secondItem="8DD-Oa-CQd" secondAttribute="trailing" constant="47" id="JTb-AO-ulU"/>
+                            <constraint firstItem="C3G-9h-nXj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="MV8-6c-H57"/>
+                            <constraint firstItem="8DD-Oa-CQd" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="MeZ-V5-fed"/>
+                            <constraint firstItem="8DD-Oa-CQd" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="aqf-q1-iD4"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="C3G-9h-nXj" secondAttribute="bottom" id="bEH-1z-UYS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="C3G-9h-nXj" secondAttribute="trailing" id="g6M-1G-Ueo"/>
+                            <constraint firstItem="eSs-z4-oTG" firstAttribute="leading" secondItem="8DD-Oa-CQd" secondAttribute="trailing" constant="8" id="mv4-GU-v6i"/>
+                            <constraint firstItem="C3G-9h-nXj" firstAttribute="top" secondItem="eSs-z4-oTG" secondAttribute="bottom" constant="8" id="yMO-6g-MyV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0lr-hE-DSA"/>
+                                <exclude reference="JTb-AO-ulU"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="searchButton" destination="eSs-z4-oTG" id="Td6-87-Rq8"/>
+                        <outlet property="tableView" destination="C3G-9h-nXj" id="fG8-g3-f9b"/>
+                        <outlet property="textField" destination="8DD-Oa-CQd" id="Seq-HH-cIV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

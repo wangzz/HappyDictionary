@@ -19,14 +19,14 @@ class FGDataManager: NSObject {
     
     // 百度词典URL
     let dicURL = "http://openapi.baidu.com/public/2.0/translate/dict/simple"
-    func fetchTranslateResult(from: NSString, to: NSString, words: NSString) {
+    func fetchTranslateResult(from: NSString, to: NSString, words: NSString, disposeResult:(FGTranslation)->Void) {
         request(.GET, dicURL, parameters: ["from" : from, "to" : to, "client_id" : "9m87vtWabfTk1NpxbLBKZVxp", "q":words])
             .response { request, response, data, error in
                 let json: AnyObject? = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: nil)
                 
                 if let resultDic = json as? NSDictionary {
                     let translation = FGTranslation(dic:resultDic);
-                    println(translation)
+                    disposeResult(translation)
                 }
         }
     }
